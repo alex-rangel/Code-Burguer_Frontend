@@ -27,28 +27,25 @@ export const ContainerItens = styled.div`
 `
 
 export const ImgLogo = styled.img`
-    margin-bottom: 50px;
-    width: 400px;
+    width: 300px;
 `
 export const Text = styled.p`
     color: #FFF;
     font-weight: bold;
     font-size: 24px;
-    margin-bottom: 30px;
     text-align: center;
 `
 export const Label = styled.p`
      color: #FFF;
     font-size: 12px;
-    margin-bottom: 5px;
+    margin: 15px 0px 5px 0px;
 `
 export const Input = styled.input`
     width: 390px;
     height: 38px;
     border-radius: 10px;
-    border: none;
+    border: ${props => (props.error ? '2px solid #cc1717' : 'none')};
     outline: none;
-    margin-bottom: 25px;
     padding-left: 10px;
 `
 export const Botao = styled.button`
@@ -56,7 +53,7 @@ export const Botao = styled.button`
     height: 35px;
     border-radius: 20px;
     border: none;
-    margin-top: 40px;
+    margin-top: 30px;
     background-color: #9758a6;
     color: #FFF;
     cursor: pointer;
@@ -71,10 +68,19 @@ export const Botao = styled.button`
 `
 export const TextSignup = styled.p`
     color: #FFF;
-    margin-top: 30px;
+    margin-top: 20px;
 
     a{
         text-decoration: underline;
         cursor: pointer;
     }
+`
+
+export const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+`
+export const ErroMessage = styled.p`
+    font-size: 12px;
+    color: #cc1717;
 `
