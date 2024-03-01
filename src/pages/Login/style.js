@@ -48,24 +48,6 @@ export const Input = styled.input`
     outline: none;
     padding-left: 10px;
 `
-export const Botao = styled.button`
-    width: 180px;
-    height: 35px;
-    border-radius: 20px;
-    border: none;
-    margin-top: 30px;
-    background-color: #9758a6;
-    color: #FFF;
-    cursor: pointer;
-
-    &:hover{
-        opacity: 0.9;
-    }
-
-    &:active{
-        opacity: 0.8;
-    }
-`
 export const TextSignup = styled.p`
     color: #FFF;
     margin-top: 20px;
