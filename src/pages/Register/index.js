@@ -4,6 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 
 import { api } from "../../services/api"; 
+import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 import {
     Container,
@@ -45,12 +47,29 @@ function Register(){
   })
 
       const onSubmit = async (userDate) => {
-        // const response = await api.post('login',{
-        //     email: userDate.email,
-        //     senha: userDate.senha
-        // })
-        // console.log(response.data)
+        try {
+        const { status } = await api.post('user',
+        {
+            nome: userDate.name,
+            email: userDate.email,
+            presenha: userDate.senha,
+            admin:false
+        },
+        {validateStatus: () => true}
+        )
+
+        if (status === 201 || status === 200) {
+          toast.success('Cadastro criado com sucesso')
+        } else if (status === 409) {
+          toast.error('E-mail já cadastradoo! Faça login para continuar')
+        } else {
+          throw new Error()
+        }
+        ;
+      }catch(err){
+        toast.error('Falha no sistema! Tente novamente')
       }
+    }
 
     return(
         <Container>
@@ -76,7 +95,10 @@ function Register(){
                     <Botao type="submit" style={{marginTop: '15px'}}>Sign In</Botao>
                 </Form>
                 <TextSigin>
-                    Possui conta? <a>Sign In</a>
+                    Possui conta?
+                    <Link to="/login">
+                      Sign In
+                    </Link>
                 </TextSigin>
             </ContainerItens>
         </Container>

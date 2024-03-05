@@ -52,9 +52,10 @@ export const TextSignup = styled.p`
     color: #FFF;
     margin-top: 20px;
 
-    a{
+    Link{
         text-decoration: underline;
         cursor: pointer;
+        color: #FFF;
     }
 `
 

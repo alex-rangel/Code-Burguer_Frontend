@@ -52,9 +52,10 @@ export const TextSigin = styled.p`
     color: #FFF;
     margin-top: 15px;
 
-    a{
+    Link{
         text-decoration: underline;
         cursor: pointer;
+        color: #FFF;
     }
 `
 

@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { toast } from 'react-toastify';
 
 import { api } from "../../services/api"; 
 
@@ -19,6 +20,8 @@ import {
 } from './style'
 
 import Botao from '../../components/Button'
+import { useUser } from '../../hooks/UserContext'
+import { Link } from 'react-router-dom'
 
 import imgLogo from '../../assets/imglogin.svg'
 import logo from '../../assets/logo.svg'
@@ -26,6 +29,7 @@ import logo from '../../assets/logo.svg'
 
 
 function Login(){
+  const { putUserData } = useUser()
 
     const schema = yup
   .object().shape({
@@ -43,11 +47,19 @@ function Login(){
   })
 
       const onSubmit = async (userDate) => {
-        const response = await api.post('login',{
+        const {data} = await toast.promise( 
+          api.post('login',{
             email: userDate.email,
             senha: userDate.senha
-        })
-        console.log(response.data)
+        }) ,
+        {
+          pending: 'Verificando os seus dados',
+          success: 'Seja bem-vindo(a)',
+          error: 'Verifique seu e-mail e senha'
+        }
+        )
+        
+        putUserData(data)
       }
 
     return(
@@ -66,7 +78,10 @@ function Login(){
                     <Botao type="submit" style={{marginTop: '35px'}}>Sing In</Botao>
                 </Form>
                 <TextSignup>
-                    Não possui conta? <a>SignUp</a>
+                    Não possui conta? 
+                      <Link to="/cadastro">
+                        Sign Up
+                      </Link>
                 </TextSignup>
             </ContainerItens>
         </Container>
