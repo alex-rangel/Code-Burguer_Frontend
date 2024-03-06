@@ -3,12 +3,12 @@ import React, { useEffect } from "react";
 import categorias from '../../assets/CATEGORIAS.png'
 import { Container, CategoryImg } from "./style";
 
-import { api } from '../../services/api'
+import  api  from '../../services/api'
 
 function CategoryCarousel() {
     useEffect(() => {
         async function loadCategories() {
-            const response = await api.get('categories')
+            const response = await api.get('categoria')
 
             console.log(response)
         }

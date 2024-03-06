@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { toast } from 'react-toastify';
 
-import { api } from "../../services/api"; 
+import  api  from "../../services/api"; 
 
 import {
     Container,
@@ -21,7 +21,7 @@ import {
 
 import Botao from '../../components/Button'
 import { useUser } from '../../hooks/UserContext'
-import { Link } from 'react-router-dom'
+import { Link,useHistory } from 'react-router-dom'
 
 import imgLogo from '../../assets/imglogin.svg'
 import logo from '../../assets/logo.svg'
@@ -30,6 +30,7 @@ import logo from '../../assets/logo.svg'
 
 function Login(){
   const { putUserData } = useUser()
+  const history = useHistory()
 
     const schema = yup
   .object().shape({
@@ -60,6 +61,10 @@ function Login(){
         )
         
         putUserData(data)
+
+        setTimeout(() => {
+          history.push('/')
+        },1000)
       }
 
     return(

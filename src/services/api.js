@@ -1,5 +1,14 @@
 import axios from "axios";
 
-export const api = axios.create({
+const api = axios.create({
     baseURL: 'http://localhost:4000'
 })
+
+api.interceptors.request.use(async config => {
+    const userData = await localStorage.getItem('codeburguer:userData')
+    const token = userData && JSON.parse(userData).token
+    config.headers.Authorization = `Bearer ${token}`
+    return config
+})
+
+export default api
