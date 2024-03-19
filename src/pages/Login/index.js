@@ -48,23 +48,28 @@ function Login(){
   })
 
       const onSubmit = async (userDate) => {
-        const {data} = await toast.promise( 
-          api.post('login',{
-            email: userDate.email,
-            senha: userDate.senha
-        }) ,
-        {
-          pending: 'Verificando os seus dados',
-          success: 'Seja bem-vindo(a)',
-          error: 'Verifique seu e-mail e senha'
+       try {
+          const {data} = await toast.promise( 
+            api.post('login',{
+              email: userDate.email,
+              senha: userDate.senha
+          }) ,
+          {
+            pending: 'Verificando os seus dados',
+            success: 'Seja bem-vindo(a)',
+            error: 'Verifique seu e-mail e senha'
+          }
+          )
+          
+          putUserData(data)
+  
+          setTimeout(() => {
+            history.push('/')
+          },1000)
+        } catch (error) {
+          console.log(error.mensage)
         }
-        )
         
-        putUserData(data)
-
-        setTimeout(() => {
-          history.push('/')
-        },1000)
       }
 
     return(

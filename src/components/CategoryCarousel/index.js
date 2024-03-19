@@ -1,23 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+//import Carousel from 'react-elastic-carousel';
 
 import categorias from '../../assets/CATEGORIAS.png'
-import { Container, CategoryImg } from "./style";
+import { Container, CategoryImg, ImgCarrossel } from "./style";
 
-import  api  from '../../services/api'
+import api from '../../services/api'
 
 function CategoryCarousel() {
+    const [categories, setCategories] = useState([])
     useEffect(() => {
         async function loadCategories() {
-            const response = await api.get('categoria')
+            const { data } = await api.get('categoria')
 
-            console.log(response)
+            setCategories(data)
         }
-
         loadCategories()
-    },[])
-    return(
+    }, [])
+    return (
         <Container>
-            <CategoryImg src={categorias} alt="Imagem do titulo do carrossel de categotias"/>
+            <CategoryImg src={categorias} alt="Imagem do titulo do carrossel de categotias" />
+            { categories.map(category => (
+                <ImgCarrossel key={category.id} src={category.url} alt="Imagem teste"/>
+            )) }
         </Container>
     )
 }
