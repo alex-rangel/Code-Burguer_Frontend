@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { GlobalStyle } from './styles/globalStyle';
 
-import { UserProvider } from "./hooks/UserContext"
+import  AppProvider  from "./hooks"
 import { ToastContainer } from 'react-toastify';
 
 import Rotas from './routes/routes';
@@ -12,9 +12,9 @@ root.render(
   <React.StrictMode>
     <GlobalStyle/>
     <ToastContainer/>
-    <UserProvider>
+    <AppProvider>
       <Rotas/>
-    </UserProvider>
+    </AppProvider>
   </React.StrictMode>
 );
 

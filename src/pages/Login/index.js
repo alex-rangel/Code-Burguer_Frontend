@@ -19,7 +19,7 @@ import {
     ErroMessage
 } from './style'
 
-import Botao from '../../components/Button'
+import { Button } from '../../components'
 import { useUser } from '../../hooks/UserContext'
 import { Link,useHistory } from 'react-router-dom'
 
@@ -85,7 +85,7 @@ function Login(){
                     <Label>Senha</Label>
                     <Input error={errors.senha?.message} type="password" {...register("senha")}/>
                     <ErroMessage>{errors.senha?.message}</ErroMessage>
-                    <Botao type="submit" style={{marginTop: '35px'}}>Sing In</Botao>
+                    <Button type="submit" style={{marginTop: '35px'}}>Sing In</Button>
                 </Form>
                 <TextSignup>
                     Não possui conta? 

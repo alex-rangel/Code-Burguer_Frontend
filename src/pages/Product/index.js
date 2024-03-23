@@ -4,7 +4,7 @@ import Productlogo from '../../assets/product-logo.svg'
 import { Container, ProductImg, CategoryButton, CategoriesMenu, ProductContainer } from "../Product/style";
 
 import api from "../../services/api";
-import CardProduct from "../../components/CardProduct";
+import { CardProduct } from "../../components";
 import formatCurrency from "../../utils/formatCurrency";
 
 
@@ -56,7 +56,7 @@ function Product() {
                  categories.map(category => (
                     <CategoryButton
                      key={category.id}
-                     isActiveCategory={activeCategory === category.id} 
+                     $isActiveCategory={activeCategory === category.id} 
                      onClick={() => {
                         setActiveCategory(category.id)
                     }}

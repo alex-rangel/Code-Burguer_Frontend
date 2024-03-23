@@ -20,7 +20,7 @@ import {
     ErroMessage
 } from './style'
 
-import Botao from '../../components/Button'
+import { Button } from '../../components/Button'
 
 import registerImage from '../../assets/RegisterImage.svg'
 import logo from '../../assets/logo.svg'
@@ -92,7 +92,7 @@ function Register(){
                     <Label>Confirme senha</Label>
                     <Input error={errors.confSenha?.message} type="password" {...register("confSenha")}/>
                     <ErroMessage>{errors.confSenha?.message}</ErroMessage>
-                    <Botao type="submit" style={{marginTop: '15px'}}>Sign In</Botao>
+                    <Button type="submit" style={{marginTop: '15px'}}>Sign In</Button>
                 </Form>
                 <TextSigin>
                     Possui conta?
