@@ -8,12 +8,16 @@ import { CardProduct } from "../../components";
 import formatCurrency from "../../utils/formatCurrency";
 
 
-function Product() {
-
+function Product({ location: { state } }) {
+    let categoryId = 0
+    if(state?.categoryId){
+        categoryId = state.categoryId
+    }
+    
     const [categories, setCategories] = useState([])
-    const [activeCategory, setActiveCategory] =useState(0)
     const [product, setProduct] = useState([])
     const [filteredProduct, setFilteredProduct] = useState([])
+    const [activeCategory, setActiveCategory] =useState(categoryId)
 
     useEffect(() => {
         async function loadCategories() {
