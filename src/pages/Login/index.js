@@ -62,10 +62,14 @@ function Login(){
           )
           
           putUserData(data)
-  
-          setTimeout(() => {
-            history.push('/')
-          },1000)
+          
+          if(data.admin){
+            history.push('/pedidos')
+          }else{
+            setTimeout(() => {
+              history.push('/')
+            },1000)
+          }
         } catch (error) {
           console.log(error.mensage)
         }

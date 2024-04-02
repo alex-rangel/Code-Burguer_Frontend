@@ -2,16 +2,20 @@ import React from "react";
 import { Route, Redirect } from 'react-router-dom'
 import { Header } from "../components";
 
-function PrivateRoute({component, ...rest}) {
+function PrivateRoute({isAdmin ,component, ...rest}) {
     const user = localStorage.getItem('codeburguer:userData')
 
     if (!user) {
         return <Redirect to="/login"/>
     }
 
+    if (isAdmin && !JSON.parse(user).admin) {
+        return <Redirect to="/"/>
+    }
+
     return (
         <>
-            <Header/>
+            {!isAdmin && <Header/>}
             <Route {...rest} component={component}/>
         </>
     )
