@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import api from "../../services/api"
+import api from "../../../services/api"
 import status from "./order-status"
 
 import Box from '@mui/material/Box';
@@ -18,7 +18,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Container, ProductImg, ReactSelectStyle } from "./style"
 
 
-function Row({ row }) {
+function Row({ row, setOrders, orders }) {
 
     const [open, setOpen] = React.useState(false);
     const [isLoading, setIsLoading] = useState(false)
@@ -27,6 +27,11 @@ function Row({ row }) {
           setIsLoading(true)
           try{
             await api.put(`pedidos/${id}`,{ status })
+
+            const newOrders = orders.map(order => {
+              return order._id === id ? { ...order, status } : order
+            })
+            setOrders(newOrders)
           }catch(err){
             console.error(err)
           }finally{ setIsLoading(false) }
@@ -51,7 +56,7 @@ function Row({ row }) {
         <TableCell>{row.date}</TableCell>
         <TableCell>
           <ReactSelectStyle
-            options={status}
+            options={status.filter(sts => sts.value !== 'Todos')}
             menuPortalTarget={document.body}
             placeholder='status'
             defaultValue={

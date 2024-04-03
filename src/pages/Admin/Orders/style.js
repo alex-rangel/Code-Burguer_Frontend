@@ -4,6 +4,7 @@ import ReactSelect from 'react-select'
 export const Container = styled.div`
     background: #efefef;
     min-height: 100vh;
+    width: 100vw;
     padding: 20px;
 `
 
