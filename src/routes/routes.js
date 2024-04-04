@@ -9,6 +9,7 @@ import { Admin } from "../pages/Admin";
 import { Cart } from "../pages/Cart";
 
 import PrivateRoute from "./private-route";
+import paths from "../Constants/paths";
 
 function Rotas() {
    return(
@@ -20,8 +21,9 @@ function Rotas() {
                 <PrivateRoute component={Product} path="/produtos"/>
                 <PrivateRoute component={Cart} path="/carrinho"/>
 
-                <PrivateRoute component={Admin} path="/pedidos" isAdmin/>
-                <PrivateRoute component={Admin} path="/listar-produtos" isAdmin/>
+                <PrivateRoute component={Admin} path={paths.Order} isAdmin/>
+                <PrivateRoute component={Admin} path={paths.Products} isAdmin/>
+                <PrivateRoute component={Admin} path={paths.NewProduct} isAdmin/>
             </Switch>
         </Router>
    ) 

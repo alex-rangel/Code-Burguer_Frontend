@@ -6,3 +6,6 @@ export const Container = styled.div`
     background: #efefef;
     justify-content: start;
 `
+export const ContainerItens = styled.div`
+    padding: 20px;
+`
