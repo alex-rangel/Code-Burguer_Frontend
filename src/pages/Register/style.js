@@ -63,7 +63,3 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
 `
-export const ErroMessage = styled.p`
-    font-size: 12px;
-    color: #cc1717;
-`

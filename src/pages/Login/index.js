@@ -15,11 +15,10 @@ import {
     Label,
     Input,
     TextSignup,
-    Form,
-    ErroMessage
+    Form
 } from './style'
 
-import { Button } from '../../components'
+import { Button,ErroMessage } from '../../components'
 import { useUser } from '../../hooks/UserContext'
 import { Link,useHistory } from 'react-router-dom'
 

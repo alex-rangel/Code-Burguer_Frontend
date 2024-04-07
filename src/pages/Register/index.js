@@ -16,11 +16,10 @@ import {
     Label,
     Input,
     TextSigin,
-    Form,
-    ErroMessage
+    Form
 } from './style'
 
-import { Button } from '../../components/Button'
+import { Button, ErroMessage } from '../../components'
 
 import registerImage from '../../assets/RegisterImage.svg'
 import logo from '../../assets/logo.svg'
