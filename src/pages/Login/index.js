@@ -10,7 +10,6 @@ import {
     Container,
     ContainerItens,
     ImgLogin,
-    ImgLogo,
     Text,
     Label,
     Input,
@@ -23,7 +22,6 @@ import { useUser } from '../../hooks/UserContext'
 import { Link,useHistory } from 'react-router-dom'
 
 import imgLogo from '../../assets/imglogin.svg'
-import logo from '../../assets/logo.svg'
 
 
 
@@ -79,7 +77,6 @@ function Login(){
         <Container>
             <ImgLogin src={imgLogo} alt="imagem de alguns habugueres"/>
             <ContainerItens>
-                <ImgLogo src={logo} alt="imagem da logo da hamburgueria"/>
                 <Text>Login</Text>
                 <Form noValidate onSubmit={handleSubmit(onSubmit)}>
                     <Label>Email</Label>

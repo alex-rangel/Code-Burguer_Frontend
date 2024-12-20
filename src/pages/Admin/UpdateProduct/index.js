@@ -8,35 +8,35 @@ import { ErroMessage } from '../../../components'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { toast } from 'react-toastify'
 import { useHistory } from "react-router-dom"
+import { useProduct } from "../../../hooks/ProductContext";
+import formatCurrency from "../../../utils/formatCurrency";
 
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as Yup from "yup"
 
 import api from "../../../services/api";
 
-const NewProduct = () => {
+const UpdateProduct = () => {
     const [fileName, setFileName] = useState(null)
     const [categories, setCatagoties] = useState([])
+    const { productData } = useProduct()
     const { push } = useHistory()
 
     const schema = Yup.object().shape({
-        name: Yup.string().required('Digite o nome do produto'),
-        price: Yup.string().required('Digite o preço do produto'),
-        category: Yup.object().required('Escolha uma categoria'),
+        name: Yup.string(),
+        price: Yup.string(),
+        category: Yup.object().required('Escolha uma nova categoria ou escolha a atual'),
         file: Yup.mixed()
-        .test('required', 'Carregue um arquivo', value => {
-            return value?.length > 0
-        })
-        .test('fileSize', 'Carregue arquivos de até 20mb', value => {
-            return value[0]?.size <= 20971520
-        })
-        .test('type', 'Carregue apenas arquivos JPEG ou PNG', value => {
-            return (
-                (value[0]?.type === 'image/jpeg') ||
-                (value[0]?.type === 'image/png') ||
-                (value[0]?.type === 'image/jpg')
-            )
-        })
+            .test('fileSize', 'Carregue arquivos de até 20mb', value => {
+                return !value.length || value[0]?.size <= 20971520
+            })
+            .test('type', 'Carregue apenas arquivos JPEG ou PNG', value => {
+                return !value.length || (
+                    (value[0]?.type === 'image/jpeg') ||
+                    (value[0]?.type === 'image/png') ||
+                    (value[0]?.type === 'image/jpg')
+                )
+            })
     })
 
     const { register, handleSubmit, control, formState: { errors }
@@ -44,21 +44,30 @@ const NewProduct = () => {
         resolver: yupResolver(schema)
     })
 
-    const onSubmit = async data => {
+    const onSubmit = async newData => {
         const productDataFormData = new FormData()
 
-        productDataFormData.append('nome', data.name)
-        productDataFormData.append('preco', data.price)
-        productDataFormData.append('categoria_id', data.category.id)
-        productDataFormData.append('file', data.file[0])
+        const { data } = await api.get(`produtos/${productData.id}`)
 
-        await toast.promise(api.post('produtos', productDataFormData),{
-            pending: 'Criando um novo produto...',
-            success: 'Produto criado com sucesso',
-            error: 'Falha ao criar o produto'
-        }) 
+        const newNome = newData.name.length <= 0 ? data.nome : newData.name 
+        const newPreco = newData.price.length <= 0 ? data.preco : newData.price
+        const newCategoria = newData.category.id 
+        const newFile = newData.file[0]
+        const oferta = data.oferta
 
-        setTimeout(() => { 
+        productDataFormData.append('nome', newNome)
+        productDataFormData.append('preco', newPreco)
+        productDataFormData.append('categoria_id', newCategoria)
+        productDataFormData.append('file', newFile)
+        productDataFormData.append('oferta', oferta)
+
+        await toast.promise(api.put(`produtos/${productData.id}`, productDataFormData), {
+            pending: 'Atualizando produto...',
+            success: 'Produto atualizado com sucesso',
+            error: 'Falha ao atualizar o produto'
+        })
+
+        setTimeout(() => {
             push('/listar-produto')
         }, 2000)
     }
@@ -73,23 +82,19 @@ const NewProduct = () => {
     }, [])
 
     return (
-
-        
-
         <Container>
-
-            <Title>Cadastrar novo produto</Title>
+            <Title>Editar produto</Title>
 
             <form noValidate onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <Label>Nome</Label>
-                    <Input type="text" {...register('name')} />
+                    <Input type="text" placeholder={productData.nome} {...register('name')} />
                     <ErroMessage>{errors.name?.message}</ErroMessage>
                 </div>
 
                 <div>
                     <Label>Preço</Label>
-                    <Input type="number" {...register('price')} />
+                    <Input type="number" placeholder={formatCurrency(productData.preco)} {...register('price')} />
                     <ErroMessage>{errors.price?.message}</ErroMessage>
                 </div>
 
@@ -115,7 +120,7 @@ const NewProduct = () => {
                     <ErroMessage>{errors.file?.message}</ErroMessage>
                 </div>
 
-                <div>            
+                <div>
                     <Controller
                         name="category"
                         control={control}
@@ -126,20 +131,19 @@ const NewProduct = () => {
                                     options={categories}
                                     getOptionLabel={cat => cat.nome}
                                     getOptionValue={cat => cat.id}
-                                    placeholder="Categorias"
+                                    placeholder="Escolha uma categoria"
                                 />
                             )
                         }}
                     >
-
                     </Controller>
                     <ErroMessage>{errors.category?.message}</ErroMessage>
                 </div>
 
-                <ButtonStyles>Adicionar produto</ButtonStyles>
+                <ButtonStyles>Editar produto</ButtonStyles>
             </form>
         </Container>
     )
 }
 
-export default NewProduct
+export default UpdateProduct

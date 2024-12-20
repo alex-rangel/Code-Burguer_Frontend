@@ -18,7 +18,6 @@ export const Header = ({children, ...props}) =>{
 
     const { push, location:{ pathname }} = useHistory()
     const { logout, userData } = useUser()
-    console.log(userData)
 
     const logoutUser = () =>{
         logout()

@@ -7,6 +7,8 @@ export const Container = styled.div`
 
 export const ProductImg = styled.img`
     width: 100%;
+    height: 200px;
+    object-fit: cover;
 `
 export const CategoriesMenu = styled.div`
     display: flex;
@@ -19,7 +21,7 @@ export const CategoryButton = styled.button`
     background: none;
     border: none;
     border-bottom: ${props => props.$isActiveCategory && '2px solid #9758A6'};
-    color: ${props =>(props.$isActiveCategory ? '#9758A6' : '#9a9a9d')};
+    color: ${props => (props.$isActiveCategory ? '#9758A6' : '#9a9a9d')};
     font-size: 17px;
     line-height: 20px;
 

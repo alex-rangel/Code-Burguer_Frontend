@@ -11,7 +11,6 @@ import {
     Container,
     ContainerItens,
     ImgLogin,
-    ImgLogo,
     Text,
     Label,
     Input,
@@ -22,9 +21,6 @@ import {
 import { Button, ErroMessage } from '../../components'
 
 import registerImage from '../../assets/RegisterImage.svg'
-import logo from '../../assets/logo.svg'
-
-
 
 function Register(){
 
@@ -75,7 +71,6 @@ function Register(){
             <ImgLogin src={registerImage} alt="imagem de alguns habugueres"/>
             <ContainerItens>
               <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
-                <ImgLogo src={logo} alt="imagem da logo da hamburgueria"/>
               </div>  
                 <Text>Cadastre-se</Text>
                 <Form noValidate onSubmit={handleSubmit(onSubmit)}>

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-import Productlogo from '../../assets/product-logo.svg'
+import Productlogo from '../../assets/Banner.jpg'
 import { Container, ProductImg, CategoryButton, CategoriesMenu, ProductContainer } from "../Product/style";
 
 import api from "../../services/api";

@@ -44,12 +44,12 @@ export function OffersCarousel() {
 
             <Carousel 
             itemsToShow={5}
-            style={{width: '90%'}}
+            style={{width: '90%', height: '100%'}}
             breakPoints={breakPoints}>
                 {offers &&
                     offers.map(product => (
                         <ContainerItems key={product.id}>
-                            <Image src={product.url} alt="foto do produto" />
+                            <Image src={product.url} alt="foto do produto" style={{ width: 200, height: 200 }}/>
                             <p>{product.nome}</p>
                             <p>{product.formatedPrice}</p>
                             <Button onClick={() => {

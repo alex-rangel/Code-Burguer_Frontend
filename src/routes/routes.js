@@ -20,10 +20,12 @@ function Rotas() {
                 <PrivateRoute exact component={Home} path="/"/>
                 <PrivateRoute component={Product} path="/produtos"/>
                 <PrivateRoute component={Cart} path="/carrinho"/>
-
                 <PrivateRoute component={Admin} path={paths.Order} isAdmin/>
                 <PrivateRoute component={Admin} path={paths.Products} isAdmin/>
                 <PrivateRoute component={Admin} path={paths.NewProduct} isAdmin/>
+                <PrivateRoute component={Admin} path={paths.NewCategory} isAdmin/>
+                <PrivateRoute component={Admin} path={paths.ListUsers} isAdmin/>
+                <PrivateRoute component={Admin} path={paths.UpdateProduct} isAdmin/>
             </Switch>
         </Router>
    ) 

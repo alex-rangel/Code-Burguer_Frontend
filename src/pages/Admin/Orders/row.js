@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import api from "../../../services/api"
 import status from "./order-status"
 
@@ -15,7 +15,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 
-import { Container, ProductImg, ReactSelectStyle } from "./style"
+import {  ProductImg, ReactSelectStyle } from "./style"
 
 
 function Row({ row, setOrders, orders }) {
@@ -91,7 +91,7 @@ function Row({ row, setOrders, orders }) {
                         {productRow.quantidade}
                       </TableCell>
                       <TableCell>{productRow.nome}</TableCell>
-                      <TableCell>{productRow.catagoria}</TableCell>
+                      <TableCell>{productRow.categoria}</TableCell>
                       <TableCell align="right">
                         <ProductImg src={productRow.url} alt="imagem do produto"/>
                       </TableCell>

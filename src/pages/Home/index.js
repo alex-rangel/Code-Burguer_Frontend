@@ -1,6 +1,6 @@
 import React from "react";
 
-import banerHome from '../../assets/banerHome.svg'
+import banerHome from '../../assets/Banner.jpg'
 import { Container, HomeImg } from "../Home/style";
 
 import { CategoryCarousel, OffersCarousel } from '../../components'

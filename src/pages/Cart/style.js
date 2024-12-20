@@ -6,6 +6,8 @@ export const Container = styled.div`
 `
 export const CartImg = styled.img`
     width: 100%;
+    height: 200px;
+    object-fit: cover;
 `
 export const Wrapper = styled.div`
     display: flex;

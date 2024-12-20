@@ -1,5 +1,5 @@
 import React from "react";
-import Cartlogo from "../../assets/CartImage.svg"
+import Cartlogo from "../../assets/Banner.jpg"
 import { CartItems, CartResume } from "../../components";
 
 import { Container, CartImg, Wrapper } from "./style"
